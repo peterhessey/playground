@@ -41,3 +41,17 @@ int main()
 ```
 
 > Best practice: initialize on creation.
+
+## `iostream`
+
+- `cout` = "character out"
+- outputs
+
+### endline
+
+- `std::endl` also flushes the output buffer, which can be slower / less efficient than allowing c++ to flush the buffer in its own time, which can be done by using `\n` instead :)
+
+### characters
+
+- single quotes are used for chars, double for strings
+- that being said, authors reccomend using double quotes for all output text (technical reasons they explain later)
