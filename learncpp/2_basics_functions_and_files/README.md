@@ -27,3 +27,25 @@ int main()
 
 - This will cause undefined behaviour, although the code will still compile.
 - Reminded that `-Werror` addresses this, however compilers may miss this in complicated scenarios!
+
+## 2.7 - Forward Declarations
+
+- Instead of re-ordering functions (e.g. always putting `main()` at the bottom of the file) one ca use *forward declarations*
+- These tell the compiler about the existence of functions/variables before they're actually defined, allowing one to use the ordering one likes for functions (at the cost of extra maintenance!)
+- For functions, this can also be called a "function prototype""
+
+## 2.10 - Intro to the preprocessor
+
+- The preprocessor runs before the compiler, making changes to the code such as removing comments
+- Statements that start with a `#` are treated as *directives* which are handled by the preprocessor
+  - e.g. the `#include` directive copies the contents of the included file into the file where the directive is placed.
+- There's also the `#define` directive, used for text substitution
+- `#ifdef` and `#ifndef` can be used to selectively compile or not block of code depending on if `#define` blocks
+
+> Object-like macros (used for text substitution) are no longer necessary for defining global literals and should be avoided.
+
+## 2.11 Header files
+
+- These are how we avoid the repeated use of forward declarations, which do not scale at all.
+- Essentially they are used to give the forward definitions of all the functions in a source file so that it can then be included without the forward declarations!
+- the header file must be included in both the includer and the includee.
