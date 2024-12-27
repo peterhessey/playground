@@ -49,3 +49,10 @@ int main()
 - These are how we avoid the repeated use of forward declarations, which do not scale at all.
 - Essentially they are used to give the forward definitions of all the functions in a source file so that it can then be included without the forward declarations!
 - the header file must be included in both the includer and the includee.
+- for now, do not put functions definitions in header files, it will cause problems.
+- `.cpp` files should not be included. While this will work, it is bad practice for many reasons such as namespace issues.
+
+## 2.12 - Header Guards
+
+- An interesting, hands-on mechanism for preventing things defined in header files being included more than once.
+- Can be done with the `#define` directive (see example) or `#pragma once` directive (not in the C++ standard but commonly used by most modern compilers)
