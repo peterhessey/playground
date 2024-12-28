@@ -13,6 +13,4 @@ int main() {
   int userNumber{getIntegerFromUser()};
   std::cout << "That doubled with functions is: " << doubleNumber(userNumber)
             << "\n";
-
-  return 0;
 }
