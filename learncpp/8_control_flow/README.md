@@ -13,6 +13,17 @@
 - Stacking `case` labels together can be used instead of lots of OR (`||`) statements in an if statement.
 - Avoid initialising variables within switch statements, and if you have to, use an explicit block for it.
 
-## 8.6/7 `goto` statements
+## 8.6/7 - `goto` statements
 
 Please just don't
+
+## 8.11 - `break` and `continue`
+
+- All the same behaviour and standards as python, nice.
+
+## 8.12 - Halts
+
+- `std::exit()` is how `main` terminates the program, and you can too!
+- included via the `cstdlib` header
+- local variables are *not* cleaned up by explicit calls to this.
+- generally you don't wanna be tangling with these things anyway. But good to know that they exist!

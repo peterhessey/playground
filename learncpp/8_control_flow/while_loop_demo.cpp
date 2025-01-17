@@ -26,9 +26,9 @@ int main() {
 
   while (outer_counter <= n_cols) {
     int diff{n_cols - outer_counter};
-    int diff_printed_count{0};
 
     if (diff > 0) {
+      int diff_printed_count{0};
       while (diff_printed_count < diff) {
         std::cout << "  ";
         ++diff_printed_count;
