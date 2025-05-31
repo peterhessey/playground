@@ -19,7 +19,7 @@
 ## 6.6 - The conditional operator
 
 - The only ternary operator in C++ (I think).
-- Very low priority in operand evaluation, always wrap in parantheses if you want to avoid pain!
+- Very low priority in operand evaluation, always wrap in parentheses if you want to avoid pain!
 - Both expressions must have the same type (or a defined way of converting between them).
 - Hard to read for the most part, only use in simple scenarios.
 
