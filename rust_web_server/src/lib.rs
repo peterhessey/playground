@@ -1,8 +1,29 @@
+use core::fmt;
+
+pub struct PoolCreationError;
+
+// user-facing output
+impl fmt::Display for PoolCreationError {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "An error occured when trying to create a ThreadPool.")
+    }
+}
+
+// programmer-facing output
+impl fmt::Debug for PoolCreationError {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{{ file: {}, line: {} }}", file!(), line!())
+    }
+}
+
 pub struct ThreadPool;
 
 impl ThreadPool {
-    pub fn new(size: usize) -> ThreadPool {
-        ThreadPool
+    pub fn build(size: usize) -> Result<ThreadPool, PoolCreationError> {
+        if size == 0 {
+            return Err(PoolCreationError);
+        }
+        Ok(ThreadPool)
     }
     pub fn execute<F>(&self, f: F)
     where
