@@ -12,13 +12,14 @@ fn main() {
     let listener = TcpListener::bind("127.0.0.1:7878").unwrap();
     let pool = ThreadPool::build(4).unwrap_or_else(|e| handle_pool_error(e));
 
-    for stream in listener.incoming() {
+    for stream in listener.incoming().take(2) {
         let stream = stream.unwrap();
 
         pool.execute(|| {
             handle_connection(stream);
         });
     }
+    println!("Shutting down.")
 }
 
 fn handle_pool_error(e: PoolCreationError) -> ! {
