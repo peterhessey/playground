@@ -10,7 +10,7 @@ use std::{
 
 fn main() {
     let listener = TcpListener::bind("127.0.0.1:7878").unwrap();
-    let pool = ThreadPool::build(0).unwrap_or_else(|e| handle_pool_error(e));
+    let pool = ThreadPool::build(4).unwrap_or_else(|e| handle_pool_error(e));
 
     for stream in listener.incoming() {
         let stream = stream.unwrap();
