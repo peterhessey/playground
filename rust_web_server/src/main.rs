@@ -1,4 +1,4 @@
-use rust_web_server::ThreadPool;
+use rust_web_server::{PoolCreationError, ThreadPool};
 use std::{
     fs,
     io::{prelude::*, BufReader},
@@ -10,10 +10,7 @@ use std::{
 
 fn main() {
     let listener = TcpListener::bind("127.0.0.1:7878").unwrap();
-    let pool = ThreadPool::build(4).unwrap_or_else(|e| {
-        eprintln!("Fatal error on ThreadPool build: {}", e);
-        exit(1);
-    });
+    let pool = ThreadPool::build(0).unwrap_or_else(|e| handle_pool_error(e));
 
     for stream in listener.incoming() {
         let stream = stream.unwrap();
@@ -22,6 +19,14 @@ fn main() {
             handle_connection(stream);
         });
     }
+}
+
+fn handle_pool_error(e: PoolCreationError) -> ! {
+    eprintln!("=== THREAD POOL CREATION FAILED ===");
+    eprintln!("Error: {}", e);
+    eprintln!("Debug: {:?}", e);
+    eprintln!("===================================");
+    exit(1);
 }
 
 fn handle_connection(mut stream: TcpStream) {

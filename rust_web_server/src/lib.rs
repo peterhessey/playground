@@ -5,7 +5,7 @@ pub struct PoolCreationError;
 // user-facing output
 impl fmt::Display for PoolCreationError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "An error occured when trying to create a ThreadPool.")
+        write!(f, "Cannot build ThreadPool with < 1 thread. Got '0'")
     }
 }
 
