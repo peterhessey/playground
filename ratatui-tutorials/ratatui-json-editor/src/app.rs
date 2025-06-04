@@ -45,7 +45,6 @@ impl App {
         self.value_input = String::new();
         self.currently_editing = None;
     }
-    // --snip--
     pub fn toggle_editing(&mut self) {
         if let Some(edit_mode) = &self.currently_editing {
             match edit_mode {
@@ -56,5 +55,9 @@ impl App {
             self.currently_editing = Some(CurrentlyEditing::Key);
         }
     }
-    // --snip--
+    pub fn print_json(&self) -> serde_json::Result<()> {
+        let output = serde_json::to_string(&self.pairs)?;
+        println!("{}", output);
+        Ok(())
+    }
 }
