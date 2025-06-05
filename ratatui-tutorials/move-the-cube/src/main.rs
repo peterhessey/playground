@@ -34,7 +34,18 @@ fn main() -> Result<(), Box<dyn Error>> {
     terminal.show_cursor()?;
     Ok(())
 }
-fn run_app<B: Backend>(terminal: &mut Terminal<B>, app: &mut App) -> io::Result<bool> {
-    terminal.draw(|f| ui(f, app))?;
-    Ok(true)
+fn run_app<B: Backend>(terminal: &mut Terminal<B>, app: &mut App) -> io::Result<()> {
+    loop {
+        terminal.draw(|f| ui(f, app))?;
+
+        if let Event::Key(key) = event::read()? {
+            if key.kind == event::KeyEventKind::Release {
+                // Skip events that are not KeyEventKind::Press
+                continue;
+            }
+            if key.code == KeyCode::Char('q') {
+                return Ok(());
+            }
+        }
+    }
 }
