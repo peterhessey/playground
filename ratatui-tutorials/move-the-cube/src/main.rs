@@ -15,10 +15,10 @@ fn main() -> Result<(), Box<dyn Error>> {
     ratatui::restore();
     Ok(())
 }
+
 fn run_app(mut terminal: DefaultTerminal, app: &mut App) -> io::Result<()> {
     loop {
         terminal.draw(|f| ui(f, app))?;
-
         if let Event::Key(key) = event::read()? {
             // only process key presses
             if key.kind != event::KeyEventKind::Press {
