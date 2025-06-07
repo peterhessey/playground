@@ -4,7 +4,7 @@ mod ui;
 use crate::app::App;
 use crate::ui::ui;
 use ratatui::{
-    Terminal,
+    DefaultTerminal, Terminal,
     backend::{Backend, CrosstermBackend},
     crossterm::{
         event::{self, DisableMouseCapture, EnableMouseCapture, Event, KeyCode, KeyEventKind},
@@ -14,27 +14,13 @@ use ratatui::{
 };
 
 fn main() -> Result<(), Box<dyn Error>> {
-    enable_raw_mode()?;
-    let mut stdout = io::stdout();
-    execute!(stdout, EnterAlternateScreen, EnableMouseCapture)?;
-
-    let backend = CrosstermBackend::new(stdout);
-    let mut terminal = Terminal::new(backend)?;
-
+    let terminal = ratatui::init();
     let mut app = App::new();
-    let _ = run_app(&mut terminal, &mut app);
-
-    // restore terminal
-    disable_raw_mode()?;
-    execute!(
-        terminal.backend_mut(),
-        LeaveAlternateScreen,
-        DisableMouseCapture
-    )?;
-    terminal.show_cursor()?;
+    let _ = run_app(terminal, &mut app);
+    ratatui::restore();
     Ok(())
 }
-fn run_app<B: Backend>(terminal: &mut Terminal<B>, app: &mut App) -> io::Result<()> {
+fn run_app(mut terminal: DefaultTerminal, app: &mut App) -> io::Result<()> {
     loop {
         terminal.draw(|f| ui(f, app))?;
 

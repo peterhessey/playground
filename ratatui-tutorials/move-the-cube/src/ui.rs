@@ -1,28 +1,30 @@
-use ratatui::{
-    Frame,
-    layout::{Constraint, Direction, Layout, Rect},
-    style::{Color, Style},
-    text::{Line, Span, Text},
-    widgets::{Block, Borders, Clear, List, ListItem, Paragraph, Wrap},
-};
-
 use crate::app::App;
+use ratatui::layout::{Constraint, Flex, Layout, Position, Rect};
+use ratatui::style::Color;
+use ratatui::{Frame, text::Text};
 
 pub fn ui(frame: &mut Frame, app: &App) {
-    let chunks = Layout::default()
-        .direction(Direction::Vertical)
-        .constraints([Constraint::Min(1)])
-        .split(frame.area());
+    let text_area = center(
+        frame.area(),
+        Constraint::Length(app.world_size * 2),
+        Constraint::Length(1),
+    );
 
-    let title_block = Block::default()
-        .borders(Borders::ALL)
-        .style(Style::default());
+    let buf = frame.buffer_mut();
+    for (idx, x) in (text_area.left()..text_area.right()).enumerate() {
+        let mut fg: Color = Color::Yellow;
+        if idx as u16 / 2 == app.cube_location {
+            fg = Color::Cyan;
+        }
+        buf[Position::new(x, text_area.y)].set_char('█').set_fg(fg);
+    }
+}
 
-    let title = Paragraph::new(Text::styled(
-        "My first thing!",
-        Style::default().fg(Color::Green),
-    ))
-    .block(title_block);
-
-    frame.render_widget(title, chunks[0]);
+/// Centers a [`Rect`] within another [`Rect`] using the provided [`Constraint`]s.
+fn center(area: Rect, horizontal: Constraint, vertical: Constraint) -> Rect {
+    let [area] = Layout::horizontal([horizontal])
+        .flex(Flex::Center)
+        .areas(area);
+    let [area] = Layout::vertical([vertical]).flex(Flex::Center).areas(area);
+    area
 }
