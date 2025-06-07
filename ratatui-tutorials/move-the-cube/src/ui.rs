@@ -14,7 +14,7 @@ pub fn ui(frame: &mut Frame, app: &App) {
     for (idx, x) in (text_area.left()..text_area.right()).enumerate() {
         let mut fg: Color = Color::Yellow;
         if idx as u16 / 2 == app.cube_location {
-            fg = Color::Cyan;
+            fg = Color::Black;
         }
         buf[Position::new(x, text_area.y)].set_char('█').set_fg(fg);
     }

@@ -25,12 +25,15 @@ fn run_app(mut terminal: DefaultTerminal, app: &mut App) -> io::Result<()> {
         terminal.draw(|f| ui(f, app))?;
 
         if let Event::Key(key) = event::read()? {
-            if key.kind == event::KeyEventKind::Release {
-                // Skip events that are not KeyEventKind::Press
+            // only process key presses
+            if key.kind != event::KeyEventKind::Press {
                 continue;
             }
-            if key.code == KeyCode::Char('q') {
-                return Ok(());
+            match key.code {
+                KeyCode::Char('q') => return Ok(()),
+                KeyCode::Left => app.move_left(),
+                KeyCode::Right => app.move_right(),
+                _ => continue,
             }
         }
     }

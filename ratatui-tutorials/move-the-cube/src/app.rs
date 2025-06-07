@@ -10,4 +10,15 @@ impl App {
             cube_location: 10,
         }
     }
+
+    pub fn move_left(&mut self) {
+        if self.cube_location > 0 {
+            self.cube_location -= 1;
+        }
+    }
+    pub fn move_right(&mut self) {
+        if self.cube_location < self.world_size - 1 {
+            self.cube_location += 1;
+        }
+    }
 }
