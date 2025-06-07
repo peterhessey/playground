@@ -4,13 +4,8 @@ mod ui;
 use crate::app::App;
 use crate::ui::ui;
 use ratatui::{
-    DefaultTerminal, Terminal,
-    backend::{Backend, CrosstermBackend},
-    crossterm::{
-        event::{self, DisableMouseCapture, EnableMouseCapture, Event, KeyCode, KeyEventKind},
-        execute,
-        terminal::{EnterAlternateScreen, LeaveAlternateScreen, disable_raw_mode, enable_raw_mode},
-    },
+    DefaultTerminal,
+    crossterm::event::{self, Event, KeyCode},
 };
 
 fn main() -> Result<(), Box<dyn Error>> {

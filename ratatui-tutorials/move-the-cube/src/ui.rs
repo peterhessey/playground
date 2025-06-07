@@ -1,7 +1,7 @@
 use crate::app::{App, Coordinate};
 use ratatui::layout::{Constraint, Flex, Layout, Position, Rect};
 use ratatui::style::Color;
-use ratatui::{Frame, text::Text};
+use ratatui::Frame;
 
 pub fn ui(frame: &mut Frame, app: &App) {
     let text_area = center(
