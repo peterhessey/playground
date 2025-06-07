@@ -33,6 +33,8 @@ fn run_app(mut terminal: DefaultTerminal, app: &mut App) -> io::Result<()> {
                 KeyCode::Char('q') => return Ok(()),
                 KeyCode::Left => app.move_left(),
                 KeyCode::Right => app.move_right(),
+                KeyCode::Up => app.move_up(),
+                KeyCode::Down => app.move_down(),
                 _ => continue,
             }
         }

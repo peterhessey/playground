@@ -1,4 +1,4 @@
-use crate::app::App;
+use crate::app::{App, Coordinate};
 use ratatui::layout::{Constraint, Flex, Layout, Position, Rect};
 use ratatui::style::Color;
 use ratatui::{Frame, text::Text};
@@ -7,16 +7,23 @@ pub fn ui(frame: &mut Frame, app: &App) {
     let text_area = center(
         frame.area(),
         Constraint::Length(app.world_size * 2),
-        Constraint::Length(1),
+        Constraint::Length(app.world_size),
     );
 
     let buf = frame.buffer_mut();
-    for (idx, x) in (text_area.left()..text_area.right()).enumerate() {
-        let mut fg: Color = Color::Yellow;
-        if idx as u16 / 2 == app.cube_location {
-            fg = Color::Black;
+    for (idy, y) in (text_area.top()..text_area.bottom()).enumerate() {
+        for (idx, x) in (text_area.left()..text_area.right()).enumerate() {
+            let mut fg: Color = Color::Yellow;
+            let coordinates_to_eval = Coordinate {
+                x: idx as u16 / 2,
+                y: idy as u16,
+            };
+
+            if coordinates_to_eval == app.cube_location {
+                fg = Color::Black;
+            }
+            buf[Position::new(x, y)].set_char('█').set_fg(fg);
         }
-        buf[Position::new(x, text_area.y)].set_char('█').set_fg(fg);
     }
 }
 
