@@ -7,7 +7,7 @@ use ratatui::widgets::{Block, Borders};
 pub fn ui(frame: &mut Frame, app: &App) {
     let border_area = center(
         frame.area(),
-        Constraint::Length(app.world_size * 2 + 2),
+        Constraint::Length((app.world_size + 2) * 2),
         Constraint::Length(app.world_size + 2),
     );
     let game_area = center(
@@ -22,10 +22,17 @@ pub fn ui(frame: &mut Frame, app: &App) {
         buf[Position::new(border_area.left(), y)]
             .set_char('█')
             .set_fg(border_color);
+        buf[Position::new(border_area.left() + 1, y)]
+            .set_char('█')
+            .set_fg(border_color);
+        buf[Position::new(border_area.right() - 2, y)]
+            .set_char('█')
+            .set_fg(border_color);
         buf[Position::new(border_area.right() - 1, y)]
             .set_char('█')
             .set_fg(border_color);
     }
+
     for x in border_area.left()..border_area.right() {
         buf[Position::new(x, border_area.top())]
             .set_char('█')
