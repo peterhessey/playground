@@ -5,28 +5,37 @@ use ratatui::style::{Color, Style, Stylize};
 use ratatui::widgets::{Block, Borders};
 
 pub fn ui(frame: &mut Frame, app: &App) {
-    let buf = frame.buffer_mut();
     let border_area = center(
         frame.area(),
         Constraint::Length(app.world_size * 2 + 2),
         Constraint::Length(app.world_size + 2),
     );
-    for (idy, y) in (border_area.top()..border_area.bottom()).enumerate() {
-        for (idx, x) in (border_area.left()..border_area.right()).enumerate() {
-            if idx == 0 || idy == y as usize {
-                buf[Position::new(x, y)]
-                    .set_char('█')
-                    .set_fg(Color::LightBlue);
-            }
-        }
-    }
-
     let game_area = center(
         border_area,
         Constraint::Length(app.world_size * 2),
         Constraint::Length(app.world_size),
     );
+    let buf = frame.buffer_mut();
 
+    let border_color = Color::White;
+    for y in border_area.top()..border_area.bottom() {
+        buf[Position::new(border_area.left(), y)]
+            .set_char('█')
+            .set_fg(border_color);
+        buf[Position::new(border_area.right() - 1, y)]
+            .set_char('█')
+            .set_fg(border_color);
+    }
+    for x in border_area.left()..border_area.right() {
+        buf[Position::new(x, border_area.top())]
+            .set_char('█')
+            .set_fg(border_color);
+        buf[Position::new(x, border_area.bottom() - 1)]
+            .set_char('█')
+            .set_fg(border_color);
+    }
+
+    let block_color = Color::LightRed;
     for (idy, y) in (game_area.top()..game_area.bottom()).enumerate() {
         for (idx, x) in (game_area.left()..game_area.right()).enumerate() {
             let coordinates_to_eval = Coordinate {
@@ -34,9 +43,7 @@ pub fn ui(frame: &mut Frame, app: &App) {
                 y: idy as u16,
             };
             if coordinates_to_eval == app.cube_location {
-                buf[Position::new(x, y)]
-                    .set_char('█')
-                    .set_fg(Color::LightBlue);
+                buf[Position::new(x, y)].set_char('█').set_fg(block_color);
             }
         }
     }
