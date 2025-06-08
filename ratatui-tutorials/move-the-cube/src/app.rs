@@ -11,9 +11,14 @@ pub struct App {
 
 impl App {
     pub fn new() -> App {
+        let world_size = 52;
+        let cube_location = Coordinate {
+            x: world_size / 2,
+            y: world_size / 2,
+        };
         App {
-            world_size: 21,
-            cube_location: Coordinate { x: 10, y: 10 },
+            world_size,
+            cube_location,
         }
     }
 
