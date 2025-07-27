@@ -5,6 +5,8 @@ import click
 
 SPANISH_DICT_LISTS_URL = "https://www.spanishdict.com/lists/"
 TRANSLATION_PAIR_DIV_ID = "M51vAoht"
+SPANISH_WORD_DIV_ID = "UO6pWUJR"
+ENGLISH_WORLD_DIV_ID = "xLusdC9B"
 
 
 @click.command()
@@ -32,8 +34,8 @@ def main(
     with open(output, "w", newline="", encoding="utf-8") as csvfile:
         writer = csv.writer(csvfile)
         for div in translation_pair_divs:
-            spanish_div = div.find("div", class_="UO6pWUJR")
-            english_div = div.find("div", class_="xLusdC9B")
+            spanish_div = div.find("div", class_=SPANISH_WORD_DIV_ID)
+            english_div = div.find("div", class_=ENGLISH_WORLD_DIV_ID)
 
             if spanish_div and english_div:
                 spanish_text = spanish_div.get_text(strip=True)
