@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.List;
 
+// tool for auto-generating java files that define the AST
 public class GenerateAst {
   public static void main(String[] args) throws IOException {
     if (args.length != 1) {
