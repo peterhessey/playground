@@ -6,6 +6,9 @@ y = false;
 print y;
 !*+-/=<> <= == // operators
 
+around
 /* 
- * multiline comment goes here
- * /
+ * multiline comment
+ * goes here
+ */poo
+thecomment
