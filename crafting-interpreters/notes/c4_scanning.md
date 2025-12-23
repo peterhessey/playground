@@ -10,4 +10,7 @@
 ### End of first pass Qs
 
 - difference between expression and statement? Still not clear on this
-- how does that block `static {}` at the top of the object work? Why use that rather than just defining it on declaration?
+  - expressions return values, statements do not and instead change state. I.e. *print "hello world"* in lox does not evaluate to a value, but instead changes some state by printing stuff to stdout. Some languages do not have statements at all.
+- how does that block `static {}` at the top of the Scanner object work? Why use that rather than just defining it on declaration?
+  - this is a "static initialization block" and is run when Java loads the class (before any instances are created)
+  - the `final` keyword means the reference is immutable, so `keywords` can't point to a different map, but the contents of the map are mutable and can change!
