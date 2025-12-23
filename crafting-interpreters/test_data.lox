@@ -10,5 +10,4 @@ around
 /* 
  * multiline comment
  * goes here
- */poo
-thecomment
+ * unterminated

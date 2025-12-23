@@ -137,7 +137,8 @@ class Scanner {
     var commentStartLine = line;
     while (peek() != '*' || peekNext() != '/') {
       if (isAtEnd()) {
-        Lox.error(commentStartLine, "Unterminated multi-line comment.");
+        Lox.error(commentStartLine, "Unterminated block comment.");
+        return;
       }
       if (peek() == '\n') {
         line++;
