@@ -1,3 +1,11 @@
-// this is a comment
-(( )){} // grouping stuff
+// intro comment
+print "hello";
+x = 5;
+false or false; // inline comment
+y = false;
+print y;
 !*+-/=<> <= == // operators
+
+/* 
+ * multiline comment goes here
+ * /
