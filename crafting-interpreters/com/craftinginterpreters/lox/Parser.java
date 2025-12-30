@@ -16,6 +16,7 @@ class Parser {
   }
 
   Expr parse() {
+    // just prints the first expression (for now)
     try {
       return expression();
     } catch (ParseError error) {

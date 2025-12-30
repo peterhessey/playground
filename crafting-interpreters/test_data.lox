@@ -1,13 +1,1 @@
-// intro comment
-print "hello";
-x = 5;
-false or false; // inline comment
-y = false;
-print y;
-!*+-/=<> <= == // operators
-
-around
-/* 
- * multiline comment
- * goes here
- * unterminated
+1 == 3 * 5 * 20 / 6 + 3;
