@@ -20,7 +20,26 @@ I.e. we are now constructing a program as a series of statements followed by an 
 
 - More types of statements will come in the following chapters.
 
+### Global Variables
+
+The grammar is now extended to the following to allowing declaring (global) variables:
+
+```text
+program        → declaration* EOF ;
+
+declaration    → varDecl
+               | statement ;
+
+statement      → exprStmt
+               | printStmt ;
+```
+
+Again using the same patterns as with the operators to handle precedence (I think this means that a `statement` has higher precendence than a `declaration`?)
+
+> `declaration` falls through to `statement`
+
 ## Questions
 
 - ArrayList?
-- Why the generics in `Stmnt` type? Don't statements by definition have no return type?
+- Why the generics in `Stmt` type? Don't statements by definition have no return type?
+- Who has higher precedence out of statements and declarations?
