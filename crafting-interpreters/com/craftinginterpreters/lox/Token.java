@@ -9,7 +9,7 @@ class Token {
   Token(TokenType type, String lexeme, Object literal, int line) {
     this.type = type;
     this.lexeme = lexeme;
-    this.literal = literal;
+    this.literal = literal; // not sure what this is -> the literal value as opposed to the string?
     this.line = line;
   }
 
