@@ -38,6 +38,12 @@ Again using the same patterns as with the operators to handle precedence (I thin
 
 > `declaration` falls through to `statement`
 
+### Assignment Syntax
+
+- The whole `a = "value";` thing!
+- similar to binary operators but without the looping due to the fact that the assignment operator is right associative.
+- the variable `a` is an "l-value", meaning it's not the value of `a` itself that is important here but the location where `a` is stored that is relevant
+
 ## Questions
 
 - ArrayList?
