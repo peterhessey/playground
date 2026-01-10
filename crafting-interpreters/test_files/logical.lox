@@ -1,0 +1,20 @@
+var a = true;
+var b = true;
+var c = false;
+
+print "a =";
+print a;
+print "b =";
+print b;
+print "c =";
+print c;
+
+print "a and b = ";
+print a and b;
+
+print "a or c = ";
+print a or c;
+
+print "b and c = ";
+print b and c;
+
