@@ -26,3 +26,17 @@ logic_and      → equality ( "and" equality )* ;
 - `and` is higher prio than `or`
 - Greedily evaluating `and`: we don't need to evaluate the right-hand expression if the left-hand  expression is `false`
   - Due to this short-circuiting, we'll add separate code instead of putting these into the binary operators to keep things cleanly separated
+
+## While loops
+
+```text
+statement      → exprStmt
+               | ifStmt
+               | printStmt
+               | whileStmt
+               | block ;
+
+whileStmt      → "while" "(" expression ")" statement ;
+```
+
+- same syntax as C

@@ -1,0 +1,6 @@
+var counter = 5;
+while (counter > 0) {
+    print "counter = ";
+    print counter;
+    counter = counter - 1;
+}
