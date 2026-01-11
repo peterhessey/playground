@@ -12,6 +12,24 @@ call           → primary ( "(" arguments? ")" )* ;
 
 with
 
-```
+```text
 arguments      → expression ( "," expression )* ;
+```
+
+## Function declarations
+
+- like variables, function declarations bind a new name
+
+```text
+declaration    → funDecl
+               | varDecl
+               | statement ;
+```
+
+with these new rules:
+
+```text
+funDecl        → "fun" function ;
+function       → IDENTIFIER "(" parameters? ")" block ;
+parameters     → IDENTIFIER ( "," IDENTIFIER )* ;
 ```
