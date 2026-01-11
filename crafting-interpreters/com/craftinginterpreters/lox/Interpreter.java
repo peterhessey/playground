@@ -69,6 +69,15 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
   }
 
   @Override
+  public Void visitReturnStmt(Stmt.Return stmt) {
+    Object value = null;
+    if (stmt.value != null)
+      value = evaluate(stmt.value);
+
+    throw new Return(value);
+  }
+
+  @Override
   public Void visitBlockStmt(Stmt.Block stmt) {
     executeBlock(stmt.statements, new Environment(environment));
     return null;
@@ -204,8 +213,12 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
         if (left instanceof String && right instanceof String) {
           return (String) left + (String) right;
         }
+        if (left instanceof String && right instanceof Double) {
+          return (String) left + stringify(right);
+        }
+
         throw new RuntimeError(expr.operator,
-            "Operands must be two numbers or two strings.");
+            "Invalid operands for '+' operator. Cannot add " + stringify(right) + " to " + stringify(left));
 
       default:
         // Unreachable - raise err instead?.

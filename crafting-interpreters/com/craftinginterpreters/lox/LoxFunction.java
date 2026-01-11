@@ -19,8 +19,12 @@ class LoxFunction implements LoxCallable {
           arguments.get(i));
     }
 
-    interpreter.executeBlock(declaration.body, fn_environment);
-    return null;
+    try {
+      interpreter.executeBlock(declaration.body, fn_environment);
+    } catch (Return returnValue) {
+      return returnValue.value;
+    }
+    return null; // no return statement returns `nil`
 
   }
 
