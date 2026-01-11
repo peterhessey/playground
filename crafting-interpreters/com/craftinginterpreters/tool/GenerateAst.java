@@ -32,6 +32,7 @@ public class GenerateAst {
         "Block      : List<Stmt> statements",
         "While      : Expr condition, Stmt body",
         "Print      : Expr expression",
+        "Return     : Token keyword, Expr value",
         "Var        : Token name, Expr initializer"));
   }
 

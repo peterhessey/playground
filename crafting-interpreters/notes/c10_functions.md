@@ -33,3 +33,22 @@ funDecl        → "fun" function ;
 function       → IDENTIFIER "(" parameters? ")" block ;
 parameters     → IDENTIFIER ( "," IDENTIFIER )* ;
 ```
+
+## Return statements
+
+```text
+statement      → exprStmt
+               | forStmt
+               | ifStmt
+               | printStmt
+               | returnStmt
+               | whileStmt
+               | block ;
+
+returnStmt     → "return" expression? ";" ;
+
+```
+
+- as Lox is dynamically typed, there are no true void function
+  - this means all fns return something, even without a return statement
+  - we return `null` from the `call()` implementation by default - this is `nil` in Lox!
