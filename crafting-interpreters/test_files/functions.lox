@@ -1,0 +1,18 @@
+fun sayHi(first, last) {
+  print "Hi, " + first + " " + last + "!";
+}
+
+sayHi("Dear", "Reader");
+
+fun sayPoo() {
+    print "Poo";
+}
+
+fun sayPooToYou(name) {
+    print "Poo to you, " + name;
+}
+
+for (var i=0; i < 5; i = i +1) {
+    sayPoo();
+    sayPooToYou("jef");
+}
