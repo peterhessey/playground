@@ -4,16 +4,19 @@ import java.util.List;
 
 class LoxFunction implements LoxCallable {
   private final Stmt.Function declaration;
+  private final Environment closure;
 
-  LoxFunction(Stmt.Function declaration) {
+  LoxFunction(Stmt.Function declaration, Environment closure) {
+    // cling on to the surrounding environment when the function is defined!
+    this.closure = closure;
     this.declaration = declaration;
   }
 
   @Override
   public Object call(Interpreter interpreter,
       List<Object> arguments) {
-    // parent env is always global env? So no local/nested functions?
-    Environment fn_environment = new Environment(interpreter.globals);
+
+    Environment fn_environment = new Environment(closure);
     for (int i = 0; i < declaration.params.size(); i++) {
       fn_environment.define(declaration.params.get(i).lexeme,
           arguments.get(i));
